@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "DataStructure_CSharp/1.0.0": {
+        "runtime": {
+          "DataStructure_CSharp.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DataStructure_CSharp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

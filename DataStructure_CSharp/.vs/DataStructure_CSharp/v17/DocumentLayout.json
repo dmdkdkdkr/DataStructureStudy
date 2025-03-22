@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\inh71\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uAC1C\uC778\uACF5\uBD80_\uC815\uB9AC\\DataStructure\\DataStructure_CSharp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2A0EA333-809C-4927-ACE1-1EB48082DEB6}|DataStructure_CSharp\\DataStructure_CSharp.csproj|c:\\users\\inh71\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\\uAC1C\uC778\uACF5\uBD80_\uC815\uB9AC\\datastructure\\datastructure_csharp\\datastructure_csharp\\stack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A0EA333-809C-4927-ACE1-1EB48082DEB6}|DataStructure_CSharp\\DataStructure_CSharp.csproj|solutionrelative:datastructure_csharp\\stack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A0EA333-809C-4927-ACE1-1EB48082DEB6}|DataStructure_CSharp\\DataStructure_CSharp.csproj|c:\\users\\inh71\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\\uAC1C\uC778\uACF5\uBD80_\uC815\uB9AC\\datastructure\\datastructure_csharp\\datastructure_csharp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A0EA333-809C-4927-ACE1-1EB48082DEB6}|DataStructure_CSharp\\DataStructure_CSharp.csproj|solutionrelative:datastructure_csharp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Stack.cs",
+              "DocumentMoniker": "C:\\Users\\inh71\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uAC1C\uC778\uACF5\uBD80_\uC815\uB9AC\\DataStructure\\DataStructure_CSharp\\DataStructure_CSharp\\Stack.cs",
+              "RelativeDocumentMoniker": "DataStructure_CSharp\\Stack.cs",
+              "ToolTip": "C:\\Users\\inh71\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uAC1C\uC778\uACF5\uBD80_\uC815\uB9AC\\DataStructure\\DataStructure_CSharp\\DataStructure_CSharp\\Stack.cs",
+              "RelativeToolTip": "DataStructure_CSharp\\Stack.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T09:02:50.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\inh71\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uAC1C\uC778\uACF5\uBD80_\uC815\uB9AC\\DataStructure\\DataStructure_CSharp\\DataStructure_CSharp\\Program.cs",
+              "RelativeDocumentMoniker": "DataStructure_CSharp\\Program.cs",
+              "ToolTip": "C:\\Users\\inh71\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uAC1C\uC778\uACF5\uBD80_\uC815\uB9AC\\DataStructure\\DataStructure_CSharp\\DataStructure_CSharp\\Program.cs",
+              "RelativeToolTip": "DataStructure_CSharp\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T09:02:02.309Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
