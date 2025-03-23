@@ -1,5 +1,7 @@
 #pragma once
+#include <tuple>
 #include <algorithm>
+#include "LinkedStack.h"
 
 template<typename T>
 class ArrayList
@@ -176,6 +178,8 @@ void ArrayList<T>::Display() const
 template<typename T>
 inline void ArrayList<T>::SelectionSort()
 {
+	if (count < 2) return;
+
 	for (int i = 0; i < count - 1; i++)
 	{
 		int iMin = i;
@@ -198,6 +202,8 @@ inline void ArrayList<T>::SelectionSort()
 template<typename T>
 inline void ArrayList<T>::BubbleSort()
 {
+	if (count < 2) return;
+
 	for (int i = count - 1; i >= 1; i--)
 	{
 		for (int j = 0; j < i; j++)
@@ -215,16 +221,98 @@ inline void ArrayList<T>::BubbleSort()
 template<typename T>
 void ArrayList<T>::QuickSort()
 {
+	if (count < 2) return;
+
+	using Range = std::tuple<int, int>;
+
+	LinkedStack<Range>* pStack = new LinkedStack<Range>();
+	pStack->Push(std::make_tuple(0, count - 1));
+	while (!pStack->IsEmpty())
+	{
+		auto range = pStack->Pop();
+		int iLeft = std::get<0>(range);
+		int iPivot = std::get<1>(range);
+		int iRight = iPivot - 1;
+
+		int i = iLeft;
+		int j = iRight;
+		while (i != j)
+		{
+			for (; i < iRight; i++)
+			{
+				if (pArr[i] > pArr[iPivot])
+					break;
+			}
+
+			for (; j > iLeft; j--)
+			{
+				if (pArr[j] < pArr[iPivot])
+					break;
+			}
+
+			if (i == j) break;
+
+			T temp = pArr[i];
+			pArr[i] = pArr[j];
+			pArr[j] = temp;
+		}
+
+		if (pArr[i] > pArr[iPivot])
+		{
+			T temp = pArr[iPivot];
+			pArr[iPivot] = pArr[i];
+			pArr[i] = temp;
+		}
+
+		if (i - iLeft > 1) pStack->Push(std::make_tuple(iLeft, i - 1));
+		if (iPivot - i > 1) pStack->Push(std::make_tuple(i + 1, iPivot));
+	}
+
+	delete pStack;
 }
 
 template<typename T>
 void ArrayList<T>::InsertionSort()
 {
+	if (count < 2) return;
+
+	for (int i = 1; i < count; i++)
+	{
+		int temp = pArr[i];
+		int j = i;
+		for (; j > 0; j--)
+		{
+			if (pArr[j - 1] < temp) break;
+			pArr[j] = pArr[j - 1];
+		}
+		pArr[j] = temp;
+	}
 }
 
 template<typename T>
 void ArrayList<T>::ShellSort()
 {
+	if (count < 2) return;
+
+	int _gap = count / 2;
+	while (_gap > 0)
+	{
+		for (int i = 0; i < _gap; i++)
+		{
+			for (int j = i + _gap; j < count; j += _gap)
+			{
+				int temp = pArr[j];
+				int k = j;
+				for (; k > i; k -= _gap)
+				{
+					if (pArr[k - _gap] < temp) break;
+					pArr[k] = pArr[k - _gap];
+				}
+				pArr[k] = temp;
+			}
+		}
+		_gap /= 2;
+	}
 }
 
 template<typename T>

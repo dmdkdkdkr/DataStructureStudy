@@ -1,0 +1,4 @@
+DataStructure_CSharp/.vs
+DataStructureStudy/.vs
+git rm --cached DataStructure_CSharp/.vs -r
+git rm --cached DataStructureStudy/.vs -r

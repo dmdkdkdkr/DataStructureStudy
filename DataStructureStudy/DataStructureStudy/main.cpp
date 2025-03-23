@@ -11,7 +11,21 @@ int main()
 	pList->AddToLast(1);
 	pList->Display();
 
-	pList->BubbleSort();
+	pList->ShellSort();
+	pList->Display();
+	pList->Clear();
+
+	pList->AddToLast(80);
+	pList->AddToLast(50);
+	pList->AddToLast(70);
+	pList->AddToLast(10);
+	pList->AddToLast(60);
+	pList->AddToLast(20);
+	pList->AddToLast(40);
+	pList->AddToLast(30);
+	pList->Display();
+
+	pList->ShellSort();
 	pList->Display();
 
 	delete pList;
