@@ -2,6 +2,8 @@
 #include <tuple>
 #include <algorithm>
 #include "LinkedStack.h"
+#include "LinkedQueue.h"
+#include "LinkedList.h"
 
 template<typename T>
 class ArrayList
@@ -33,6 +35,7 @@ public:
 	void QuickSort();
 	void InsertionSort();
 	void ShellSort();
+	void MergeSort();
 
 private:
 	bool IsFull() const;
@@ -313,6 +316,108 @@ void ArrayList<T>::ShellSort()
 		}
 		_gap /= 2;
 	}
+}
+
+template<typename T>
+inline void ArrayList<T>::MergeSort()
+{
+	if (count < 2) return;
+
+	using Range = std::tuple<int, int>;
+
+	// Split
+	LinkedQueue<Range>* pSplitQueue = new LinkedQueue<Range>();
+	LinkedQueue<Range>* pMergeQueue = new LinkedQueue<Range>();
+	pSplitQueue->Enqueue(std::make_tuple(0, count - 1));
+	while (!pSplitQueue->IsEmpty())
+	{
+		auto range = pSplitQueue->Dequeue();
+		int iStart = std::get<0>(range);
+		int iEnd = std::get<1>(range);
+		int count = (iEnd - iStart) + 1;
+		if (count > 1)
+		{
+			int iMid = iStart + (count / 2);
+			pSplitQueue->Enqueue(std::make_tuple(iStart, iMid - 1));
+			pSplitQueue->Enqueue(std::make_tuple(iMid, iEnd));
+		}
+		else
+		{
+			pMergeQueue->Enqueue(range);
+		}
+	}
+
+	// Merge
+	LinkedQueue<Range>* pResultQueue = new LinkedQueue<Range>();
+	LinkedList<T>* pLeft = new LinkedList<T>();
+	LinkedList<T>* pRight = new LinkedList<T>();
+	while (pMergeQueue->Count() > 1)
+	{
+		while (pMergeQueue->Count() > 1)
+		{
+			auto left = pMergeQueue->Dequeue();
+			auto right = pMergeQueue->Dequeue();
+
+			int iLeftStart = std::get<0>(left);
+			int iLeftEnd = std::get<1>(left);
+			int iRightStart = std::get<0>(right);
+			int iRightEnd = std::get<1>(right);
+
+			pLeft->Clear();
+			for (int i = iLeftStart; i <= iLeftEnd; i++)
+				pLeft->AddToLast(pArr[i]);
+
+			pRight->Clear();
+			for (int i = iRightStart; i <= iRightEnd; i++)
+				pRight->AddToLast(pArr[i]);
+
+			int iArr = iLeftStart;
+			while (pLeft->Count() > 0 && pRight->Count() > 0)
+			{
+				int lValue = pLeft->Get(0);
+				int rValue = pRight->Get(0);
+				if (lValue < rValue)
+				{
+					pArr[iArr] = lValue;
+					pLeft->Remove(0);
+				}
+				else
+				{
+					pArr[iArr] = rValue;
+					pRight->Remove(0);
+				}
+				iArr++;
+			}
+
+			while (pLeft->Count() > 0)
+			{
+				pArr[iArr] = pLeft->Get(0);
+				pLeft->Remove(0);
+				iArr++;
+			}
+
+			while (pRight->Count() > 0)
+			{
+				pArr[iArr] = pRight->Get(0);
+				pRight->Remove(0);
+				iArr++;
+			}
+
+			pResultQueue->Enqueue(std::make_tuple(iLeftStart, iRightEnd));
+		}
+
+		while (pMergeQueue->Count() > 0)
+			pResultQueue->Enqueue(pMergeQueue->Dequeue());
+
+		while (pResultQueue->Count() > 0)
+			pMergeQueue->Enqueue(pResultQueue->Dequeue());
+	}
+
+	delete pRight;
+	delete pLeft;
+	delete pResultQueue;
+	delete pMergeQueue;
+	delete pSplitQueue;
 }
 
 template<typename T>

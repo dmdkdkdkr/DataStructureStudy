@@ -11,23 +11,23 @@ int main()
 	pList->AddToLast(1);
 	pList->Display();
 
-	pList->ShellSort();
+	pList->MergeSort();
 	pList->Display();
 	pList->Clear();
 
-	pList->AddToLast(80);
-	pList->AddToLast(50);
-	pList->AddToLast(70);
-	pList->AddToLast(10);
-	pList->AddToLast(60);
-	pList->AddToLast(20);
-	pList->AddToLast(40);
-	pList->AddToLast(30);
+	pList->AddToLast(8);
+	pList->AddToLast(5);
+	pList->AddToLast(7);
+	pList->AddToLast(1);
+	pList->AddToLast(6);
+	pList->AddToLast(2);
+	pList->AddToLast(4);
+	pList->AddToLast(3);
 	pList->Display();
 
-	pList->ShellSort();
+	pList->MergeSort();
 	pList->Display();
-
 	delete pList;
+
 	return 0;
 }
