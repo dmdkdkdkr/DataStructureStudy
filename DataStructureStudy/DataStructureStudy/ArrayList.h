@@ -4,6 +4,7 @@
 #include "LinkedStack.h"
 #include "LinkedQueue.h"
 #include "LinkedList.h"
+#include "Heap.h"
 
 template<typename T>
 class ArrayList
@@ -36,6 +37,7 @@ public:
 	void InsertionSort();
 	void ShellSort();
 	void MergeSort();
+	void HeapSort();
 
 private:
 	bool IsFull() const;
@@ -418,6 +420,21 @@ inline void ArrayList<T>::MergeSort()
 	delete pResultQueue;
 	delete pMergeQueue;
 	delete pSplitQueue;
+}
+
+template<typename T>
+inline void ArrayList<T>::HeapSort()
+{
+	Heap<T>* pHeap = new Heap<T>(count, false);
+
+	for (int i = 0; i < count; i++) pHeap->Insert(pArr[i]);
+	for (int i = 0; i < count; i++)
+	{
+		pArr[i] = pHeap->Peek();
+		pHeap->Remove(pArr[i]);
+	}
+
+	delete pHeap;
 }
 
 template<typename T>

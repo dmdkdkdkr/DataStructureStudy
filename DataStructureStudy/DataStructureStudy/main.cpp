@@ -11,7 +11,7 @@ int main()
 	pList->AddToLast(1);
 	pList->Display();
 
-	pList->MergeSort();
+	pList->HeapSort();
 	pList->Display();
 	pList->Clear();
 
@@ -25,7 +25,7 @@ int main()
 	pList->AddToLast(3);
 	pList->Display();
 
-	pList->MergeSort();
+	pList->HeapSort();
 	pList->Display();
 	delete pList;
 

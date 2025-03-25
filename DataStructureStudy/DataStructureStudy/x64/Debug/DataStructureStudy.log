@@ -1,29 +1,106 @@
 ﻿  LinkedGraph.cpp
-C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(221,53): warning C4267: 'return': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(209,53): warning C4267: 'return': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   (소스 파일 'LinkedGraph.cpp'을(를) 컴파일하는 중)
-      C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(221,53):
+      C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(209,53):
       템플릿 인스턴스화 컨텍스트(가장 오래된 인스턴스화 컨텍스트)가
-          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(196,29):
+          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(197,29):
           컴파일되는 클래스 템플릿 인스턴스화 'Heap<LinkedGraphEdge>'에 대한 참조를 확인하세요.
-          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(33,48):
+          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(34,48):
           클래스 템플릿 멤버 함수 'Heap<LinkedGraphEdge>::Heap(int,bool)'을(를) 컴파일하는 중입니다.
               C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\LinkedGraph.cpp(343,20):
               'LinkedGraph::MinimumSpanningTreeKruskal'에서 'Heap<LinkedGraphEdge>::Heap'에 대한 첫 번째 참조를 확인하세요.
-          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(215,32):
+          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(203,32):
           클래스 템플릿 멤버 함수 'bool Heap<LinkedGraphEdge>::IsEmpty(void)'을(를) 컴파일하는 중입니다.
-              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(79,2):
+              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(80,2):
               'Heap<LinkedGraphEdge>::Remove'에서 'Heap<LinkedGraphEdge>::IsEmpty'에 대한 첫 번째 참조를 확인하세요.
               C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\LinkedGraph.cpp(358,26):
               'LinkedGraph::MinimumSpanningTreeKruskal'에서 'Heap<LinkedGraphEdge>::Remove'에 대한 첫 번째 참조를 확인하세요.
-          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(221,32):
+          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(209,32):
           클래스 템플릿 멤버 함수 'int Heap<LinkedGraphEdge>::Capacity(void)'을(를) 컴파일하는 중입니다.
-              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(218,33):
+              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(206,33):
               'Heap<LinkedGraphEdge>::IsFull'에서 'Heap<LinkedGraphEdge>::Capacity'에 대한 첫 번째 참조를 확인하세요.
-              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(47,2):
+              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(48,2):
               'Heap<LinkedGraphEdge>::Insert'에서 'Heap<LinkedGraphEdge>::IsFull'에 대한 첫 번째 참조를 확인하세요.
               C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\LinkedGraph.cpp(347,30):
               'LinkedGraph::MinimumSpanningTreeKruskal'에서 'Heap<LinkedGraphEdge>::Insert'에 대한 첫 번째 참조를 확인하세요.
   
   main.cpp
+C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(209,53): warning C4267: 'return': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'main.cpp'을(를) 컴파일하는 중)
+      C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(209,53):
+      템플릿 인스턴스화 컨텍스트(가장 오래된 인스턴스화 컨텍스트)가
+          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\main.cpp(6,30):
+          컴파일되는 클래스 템플릿 인스턴스화 'ArrayList<int>'에 대한 참조를 확인하세요.
+          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\ArrayList.h(427,1):
+          클래스 템플릿 멤버 함수 'void ArrayList<int>::HeapSort(void)'을(를) 컴파일하는 중입니다.
+              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\main.cpp(14,17):
+              'main'에서 'ArrayList<int>::HeapSort'에 대한 첫 번째 참조를 확인하세요.
+          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\ArrayList.h(428,23):
+          컴파일되는 클래스 템플릿 인스턴스화 'Heap<T>'에 대한 참조를 확인하세요.
+          with
+          [
+              T=int
+          ]
+          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(34,48):
+          클래스 템플릿 멤버 함수 'Heap<T>::Heap(int,bool)'을(를) 컴파일하는 중입니다.
+          with
+          [
+              T=int
+          ]
+              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\ArrayList.h(428,17):
+              'ArrayList<int>::HeapSort'에서 'Heap<T>::Heap'에 대한 첫 번째 참조를 확인하세요.
+          with
+          [
+              T=int
+          ]
+              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\main.cpp(14,17):
+              'main'에서 'ArrayList<int>::HeapSort'에 대한 첫 번째 참조를 확인하세요.
+          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(203,32):
+          클래스 템플릿 멤버 함수 'bool Heap<T>::IsEmpty(void)'을(를) 컴파일하는 중입니다.
+          with
+          [
+              T=int
+          ]
+              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(80,2):
+              'Heap<T>::Remove'에서 'Heap<T>::IsEmpty'에 대한 첫 번째 참조를 확인하세요.
+          with
+          [
+              T=int
+          ]
+              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\ArrayList.h(434,16):
+              'ArrayList<int>::HeapSort'에서 'Heap<T>::Remove'에 대한 첫 번째 참조를 확인하세요.
+          with
+          [
+              T=int
+          ]
+              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\main.cpp(14,17):
+              'main'에서 'ArrayList<int>::HeapSort'에 대한 첫 번째 참조를 확인하세요.
+          C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(209,32):
+          클래스 템플릿 멤버 함수 'int Heap<T>::Capacity(void)'을(를) 컴파일하는 중입니다.
+          with
+          [
+              T=int
+          ]
+              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(206,33):
+              'Heap<T>::IsFull'에서 'Heap<T>::Capacity'에 대한 첫 번째 참조를 확인하세요.
+          with
+          [
+              T=int
+          ]
+              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\Heap.h(48,2):
+              'Heap<T>::Insert'에서 'Heap<T>::IsFull'에 대한 첫 번째 참조를 확인하세요.
+          with
+          [
+              T=int
+          ]
+              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\ArrayList.h(430,47):
+              'ArrayList<int>::HeapSort'에서 'Heap<T>::Insert'에 대한 첫 번째 참조를 확인하세요.
+          with
+          [
+              T=int
+          ]
+              C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\DataStructureStudy\main.cpp(14,17):
+              'main'에서 'ArrayList<int>::HeapSort'에 대한 첫 번째 참조를 확인하세요.
+  
   코드를 생성하고 있습니다...
   DataStructureStudy.vcxproj -> C:\Users\inh71\OneDrive\바탕 화면\Study\DataStructure\DataStructureStudy\x64\Debug\DataStructureStudy.exe

@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="ArrayGraph.cpp" />
     <ClCompile Include="Etc.cpp" />
+    <ClCompile Include="Heap.cpp" />
     <ClCompile Include="LinkedGraph.cpp" />
     <ClCompile Include="ListDataType.cpp" />
     <ClCompile Include="main.cpp" />
