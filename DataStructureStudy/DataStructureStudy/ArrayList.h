@@ -39,6 +39,8 @@ public:
 	void MergeSort();
 	void HeapSort();
 
+	int BinarySearch(T data, bool onSort = false);
+
 private:
 	bool IsFull() const;
 	bool IsEmpty() const;
@@ -230,6 +232,7 @@ void ArrayList<T>::QuickSort()
 
 	using Range = std::tuple<int, int>;
 
+	int limit = 0;
 	LinkedStack<Range>* pStack = new LinkedStack<Range>();
 	pStack->Push(std::make_tuple(0, count - 1));
 	while (!pStack->IsEmpty())
@@ -241,15 +244,15 @@ void ArrayList<T>::QuickSort()
 
 		int i = iLeft;
 		int j = iRight;
-		while (i != j)
+		while (i < j)
 		{
-			for (; i < iRight; i++)
+			for (; i < j; i++)
 			{
 				if (pArr[i] > pArr[iPivot])
 					break;
 			}
 
-			for (; j > iLeft; j--)
+			for (; j > i; j--)
 			{
 				if (pArr[j] < pArr[iPivot])
 					break;
@@ -260,6 +263,9 @@ void ArrayList<T>::QuickSort()
 			T temp = pArr[i];
 			pArr[i] = pArr[j];
 			pArr[j] = temp;
+
+			limit++;
+			if (limit > 100) break;
 		}
 
 		if (pArr[i] > pArr[iPivot])
@@ -269,8 +275,11 @@ void ArrayList<T>::QuickSort()
 			pArr[i] = temp;
 		}
 
-		if (i - iLeft > 1) pStack->Push(std::make_tuple(iLeft, i - 1));
+		if (i - iLeft > 1) pStack->Push(std::make_tuple(iLeft, i));
 		if (iPivot - i > 1) pStack->Push(std::make_tuple(i + 1, iPivot));
+
+		limit++;
+		if (limit > 10) break;
 	}
 
 	delete pStack;
@@ -435,6 +444,34 @@ inline void ArrayList<T>::HeapSort()
 	}
 
 	delete pHeap;
+}
+
+template<typename T>
+inline int ArrayList<T>::BinarySearch(T data, bool doSort)
+{
+	if (IsEmpty()) return -1;
+	if (doSort) QuickSort();
+
+	int iStart = 0;
+	int iEnd = count - 1;
+	while (iStart <= iEnd)
+	{
+		int iMid = (iStart + iEnd) / 2;
+		if (data == pArr[iMid])
+		{
+			return iMid;
+		}
+		else if (data < pArr[iMid])
+		{
+			iEnd = iMid - 1;
+		}
+		else
+		{
+			iStart = iMid + 1;
+		}
+	}
+
+	return -1;
 }
 
 template<typename T>
