@@ -132,6 +132,7 @@
     <ClInclude Include="BinarySearchTree.h" />
     <ClInclude Include="Etc.h" />
     <ClInclude Include="GraphType.h" />
+    <ClInclude Include="HashTable.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="LinkedBinaryTree.h" />
     <ClInclude Include="LinkedBinaryTreeNode.h" />

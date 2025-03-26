@@ -1,21 +1,28 @@
 #include <stdio.h>
-#include "ArrayList.h"
+#include "HashTable.h"
 
 int main()
 {
-	ArrayList<int>* pList = new ArrayList<int>(10);
-	pList->AddToLast(8);
-	pList->AddToLast(5);
-	pList->AddToLast(7);
-	pList->AddToLast(1);
-	pList->AddToLast(6);
-	pList->AddToLast(2);
-	pList->Display();
+	HashTable<int, int>* pHashTable = new HashTable<int, int>(5);
+	pHashTable->Add(4, 400);
+	pHashTable->Add(4, 400);
+	pHashTable->Add(9, 300);
+	pHashTable->Add(6, 600);
+	pHashTable->Add(7, 700);
+	pHashTable->Add(2, 200);
+	pHashTable->Display();
 
-	pList->QuickSort();
-	pList->Display();
+	pHashTable->Remove(2);
+	pHashTable->Remove(1);
+	pHashTable->Display();
 
-	delete pList;
+	pHashTable->Clear();
+	pHashTable->Display();
 
+	pHashTable->Add(60, 1);
+	pHashTable->Add(70, 2);
+	pHashTable->Display();
+
+	delete pHashTable;
 	return 0;
 }
