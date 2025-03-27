@@ -27,7 +27,7 @@ public:
 	bool Add(LinkedList<T>* pList);
 	bool AddToLast(T _data);
 	bool Remove(int _index);
-	bool RemoveData(T data);
+	bool Remove(T data);
 	bool RemoveFromLast();
 	bool Clear();
 	T Get(int _index) const;
@@ -36,6 +36,8 @@ public:
 	int Count() const;
 	bool Reverse();
 	void Display() const;
+
+	T operator[](int i) const;
 };
 
 
@@ -173,7 +175,7 @@ bool LinkedList<T>::Remove(int _index)
 }
 
 template<typename T>
-bool LinkedList<T>::RemoveData(T data)
+bool LinkedList<T>::Remove(T data)
 {
 	if (IsEmpty())
 	{
@@ -259,28 +261,18 @@ T LinkedList<T>::Find(T _data)
 {
 	T ret = T();
 
-	if (IsEmpty())
-	{
-		printf("LinkedList is empty\n");
-		return ret;
-	}
+	if (IsEmpty()) return ret;
 
 	LinkedListNode<T>* pNode = pHead;
-	while (pNode != NULL)
+	do
 	{
-		if (pNode->data == ret)
+		if (pNode->data == _data)
 		{
 			ret = pNode->data;
 			break;
 		}
 		pNode = pNode->pNext;
-	}
-
-	if (pNode == NULL)
-	{
-		printf("Can't find the same data\n");
-		return ret;
-	}
+	} while (pNode != pHead);
 
 	return ret;
 }
@@ -321,6 +313,9 @@ void LinkedList<T>::Display() const
 	}
 	printf("End LinkedList\n");
 }
+
+template<typename T>
+inline T LinkedList<T>::operator[](int i) const { return Get(i); }
 
 template <typename T>
 inline bool LinkedList<T>::IsEmpty() const { return count == 0; }

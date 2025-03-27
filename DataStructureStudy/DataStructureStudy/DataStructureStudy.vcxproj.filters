@@ -57,6 +57,15 @@
     <ClInclude Include="HashTable.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="HashTable_LinearProbe.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="HashTableFactory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="HashTable_Chaining.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

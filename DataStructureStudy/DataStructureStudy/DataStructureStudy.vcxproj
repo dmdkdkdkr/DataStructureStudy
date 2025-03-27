@@ -133,6 +133,9 @@
     <ClInclude Include="Etc.h" />
     <ClInclude Include="GraphType.h" />
     <ClInclude Include="HashTable.h" />
+    <ClInclude Include="HashTableFactory.h" />
+    <ClInclude Include="HashTable_Chaining.h" />
+    <ClInclude Include="HashTable_LinearProbe.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="LinkedBinaryTree.h" />
     <ClInclude Include="LinkedBinaryTreeNode.h" />
