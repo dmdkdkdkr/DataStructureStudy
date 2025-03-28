@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="ArrayGraph.h" />
     <ClInclude Include="ArrayList.h" />
+    <ClInclude Include="AVLBinarySearchTree.h" />
     <ClInclude Include="BinarySearchTree.h" />
     <ClInclude Include="Etc.h" />
     <ClInclude Include="GraphType.h" />

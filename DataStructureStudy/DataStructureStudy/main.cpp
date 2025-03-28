@@ -1,51 +1,36 @@
 #include <stdio.h>
-#include "HashTableFactory.h"
+#include "AVLBinarySearchTree.h"
 
 int main()
 {
-	printf("======= Linear probing hash table =======\n");
-	HashTableBase<int, int>* pHashTable = HashTableFactory<int, int>::Create(LINEAR, 5);
-	pHashTable->Add(4, 400);
-	pHashTable->Add(4, 400);
-	pHashTable->Add(9, 300);
-	pHashTable->Add(6, 600);
-	pHashTable->Add(7, 700);
-	pHashTable->Add(2, 200);
-	pHashTable->Display();
+	AVLBinarySearchTree<int>* pTree = new AVLBinarySearchTree<int>();
+	pTree->Insert(9);
+	pTree->Insert(3);
+	pTree->Insert(1);
+	pTree->Insert(10);
+	pTree->Insert(12);
+	pTree->Insert(6);
+	pTree->Insert(4);
+	pTree->Insert(5);
+	pTree->Display();
 
-	pHashTable->Remove(2);
-	pHashTable->Remove(1);
-	pHashTable->Display();
+	auto pNode = pTree->Search(10);
+	printf("Searched Data: %d\n", pNode->data);
+	pTree->Search(100);
 
-	pHashTable->Clear();
-	pHashTable->Display();
+	pTree->Remove(9);
+	pTree->Remove(10);
+	pTree->Remove(5);
+	pTree->Display();
 
-	pHashTable->Add(60, 1);
-	pHashTable->Add(70, 2);
-	pHashTable->Display();
-	delete pHashTable;
+	pTree->Clear();
+	pTree->Display();
 
-	printf("\n======= Chaining hash table =======\n");
-	pHashTable = HashTableFactory<int, int>::Create(CHAINING, 5);
-	pHashTable->Add(4, 400);
-	pHashTable->Add(4, 400);
-	pHashTable->Add(9, 300);
-	pHashTable->Add(6, 600);
-	pHashTable->Add(7, 700);
-	pHashTable->Add(2, 200);
-	pHashTable->Display();
+	pTree->Insert(10);
+	pTree->Insert(12);
+	pTree->Insert(6);
+	pTree->Display();
 
-	pHashTable->Remove(2);
-	pHashTable->Remove(1);
-	pHashTable->Display();
-
-	pHashTable->Clear();
-	pHashTable->Display();
-
-	pHashTable->Add(60, 1);
-	pHashTable->Add(70, 2);
-	pHashTable->Display();
-	delete pHashTable;
-
+	delete pTree;
 	return 0;
 }
