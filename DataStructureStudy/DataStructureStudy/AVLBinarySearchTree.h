@@ -3,12 +3,14 @@
 #include <limits>
 #include "LinkedStack.h"
 #include "LinkedQueue.h"
+#include "SelfBalancingBST.h"
 
 template<typename T>
-class AVLTreeNode
+class AVLTreeNode : public SelfBalancingTreeNode<T>
 {
 public:
-	T data;
+	using SelfBalancingTreeNode<T>::data;
+
 	int height;
 	int balanceFactor;
 	AVLTreeNode<T>* pLeft;
@@ -21,35 +23,34 @@ template<typename T>
 AVLTreeNode<T>::AVLTreeNode() : height(1), balanceFactor(0), pLeft(nullptr), pRight(nullptr) {}
 
 template<typename T>
-class AVLBinarySearchTree
+class AVLBinarySearchTree : public SelfBalancingBST<T>
 {
-private:
-	int count;
+	using SelfBalancingBST<T>::count;
+	using SelfBalancingBST<T>::IsEmpty;
+
+protected:
 	AVLTreeNode<T>* pRoot;
 
 public:
 	AVLBinarySearchTree();
 	~AVLBinarySearchTree();
 
-	bool Insert(T data);
-	bool Remove(T data);
-	void Clear();
-	AVLTreeNode<T>* Search(T data) const;
+	bool Insert(T data) override;
+	bool Remove(T data) override;
+	void Clear() override;
+	SelfBalancingTreeNode<T>* Search(T data) const override;
 	void Display() const;
 
-	int Count() const;
-	bool IsEmpty() const;
-
-private:
+protected:
 	void BalanceTree(LinkedStack<AVLTreeNode<T>*>* pStack);
-	AVLTreeNode<T>* RotateLL(AVLTreeNode<T>* pNode);
-	AVLTreeNode<T>* RotateRR(AVLTreeNode<T>* pNode);
+	SelfBalancingTreeNode<T>* RotateLL(SelfBalancingTreeNode<T>* pNode) override;
+	SelfBalancingTreeNode<T>* RotateRR(SelfBalancingTreeNode<T>* pNode) override;
 	void UpdateHeight(AVLTreeNode<T>* pNode);
 	void ChangeChild(AVLTreeNode<T>* pParent, AVLTreeNode<T>* pNode, AVLTreeNode<T>* pChild);
 };
 
 template<typename T>
-AVLBinarySearchTree<T>::AVLBinarySearchTree() : count(0), pRoot(nullptr) {}
+AVLBinarySearchTree<T>::AVLBinarySearchTree() : SelfBalancingBST<T>() {}
 
 template<typename T>
 AVLBinarySearchTree<T>::~AVLBinarySearchTree()
@@ -206,7 +207,7 @@ bool AVLBinarySearchTree<T>::Remove(T data)
 }
 
 template<typename T>
-void AVLBinarySearchTree<T>::Clear()
+inline void AVLBinarySearchTree<T>::Clear()
 {
 	if (IsEmpty()) return;
 
@@ -226,7 +227,7 @@ void AVLBinarySearchTree<T>::Clear()
 }
 
 template<typename T>
-AVLTreeNode<T>* AVLBinarySearchTree<T>::Search(T data) const
+SelfBalancingTreeNode<T>* AVLBinarySearchTree<T>::Search(T data) const
 {
 	if (IsEmpty())
 	{
@@ -238,7 +239,7 @@ AVLTreeNode<T>* AVLBinarySearchTree<T>::Search(T data) const
 	while (pNode != nullptr)
 	{
 		if (pNode->data == data)
-			return pNode;
+			return (SelfBalancingTreeNode<T>*)pNode;
 		else if (data < pNode->data)
 			pNode = pNode->pLeft;
 		else
@@ -250,7 +251,7 @@ AVLTreeNode<T>* AVLBinarySearchTree<T>::Search(T data) const
 }
 
 template<typename T>
-inline void AVLBinarySearchTree<T>::Display() const
+void AVLBinarySearchTree<T>::Display() const
 {
 	printf("\nDisplay avl binary search tree => count: %d\n", count);
 
@@ -286,12 +287,6 @@ inline void AVLBinarySearchTree<T>::Display() const
 }
 
 template<typename T>
-inline int AVLBinarySearchTree<T>::Count() const { return count; }
-
-template<typename T>
-inline bool AVLBinarySearchTree<T>::IsEmpty() const { return count == 0; }
-
-template<typename T>
 void AVLBinarySearchTree<T>::BalanceTree(LinkedStack<AVLTreeNode<T>*>* pStack)
 {
 	AVLTreeNode<T>* pNode = nullptr;
@@ -308,56 +303,58 @@ void AVLBinarySearchTree<T>::BalanceTree(LinkedStack<AVLTreeNode<T>*>* pStack)
 		if (balanceFactor == 2 && pNode->pLeft->balanceFactor == 1)
 		{
 			// LL
-			pChild = RotateLL(pNode);
+			pChild = (AVLTreeNode<T>*)RotateLL(pNode);
 			ChangeChild(pParent, pNode, pChild);
 		}
 		else if (balanceFactor == 2 && pNode->pLeft->balanceFactor == -1)
 		{
 			// LR
-			pNode->pLeft = RotateRR(pNode->pLeft);
-			pChild = RotateLL(pNode);
+			pNode->pLeft = (AVLTreeNode<T>*)RotateRR(pNode->pLeft);
+			pChild = (AVLTreeNode<T>*)RotateLL(pNode);
 			ChangeChild(pParent, pNode, pChild);
 		}
 		else if (balanceFactor == -2 && pNode->pRight->balanceFactor == 1)
 		{
 			// RL
-			pNode->pRight = RotateLL(pNode->pRight);
-			pChild = RotateRR(pNode);
+			pNode->pRight = (AVLTreeNode<T>*)RotateLL(pNode->pRight);
+			pChild = (AVLTreeNode<T>*)RotateRR(pNode);
 			ChangeChild(pParent, pNode, pChild);
 		}
 		else if (balanceFactor == -2 && pNode->pRight->balanceFactor == -1)
 		{
 			// RR
-			pChild = RotateRR(pNode);
+			pChild = (AVLTreeNode<T>*)RotateRR(pNode);
 			ChangeChild(pParent, pNode, pChild);
 		}
 	}
 }
 
 template<typename T>
-AVLTreeNode<T>* AVLBinarySearchTree<T>::RotateLL(AVLTreeNode<T>* pNode)
+SelfBalancingTreeNode<T>* AVLBinarySearchTree<T>::RotateLL(SelfBalancingTreeNode<T>* pNode)
 {
-	AVLTreeNode<T>* pLeft = pNode->pLeft;
-	pNode->pLeft = pLeft->pRight;
-	pLeft->pRight = pNode;
+	AVLTreeNode<T>* pCur = (AVLTreeNode<T>*)pNode;
+	AVLTreeNode<T>* pLeft = pCur->pLeft;
+	pCur->pLeft = pLeft->pRight;
+	pLeft->pRight = pCur;
 
-	UpdateHeight(pNode);
+	UpdateHeight(pCur);
 	UpdateHeight(pLeft);
 
-	return pLeft;
+	return (SelfBalancingTreeNode<T>*)pLeft;
 }
 
 template<typename T>
-AVLTreeNode<T>* AVLBinarySearchTree<T>::RotateRR(AVLTreeNode<T>* pNode)
+SelfBalancingTreeNode<T>* AVLBinarySearchTree<T>::RotateRR(SelfBalancingTreeNode<T>* pNode)
 {
-	AVLTreeNode<T>* pRight = pNode->pRight;
-	pNode->pRight = pRight->pLeft;
-	pRight->pLeft = pNode;
+	AVLTreeNode<T>* pCur = (AVLTreeNode<T>*)pNode;
+	AVLTreeNode<T>* pRight = pCur->pRight;
+	pCur->pRight = pRight->pLeft;
+	pRight->pLeft = pCur;
 
-	UpdateHeight(pNode);
+	UpdateHeight(pCur);
 	UpdateHeight(pRight);
 
-	return pRight;
+	return (SelfBalancingTreeNode<T>*)pRight;
 }
 
 template<typename T>

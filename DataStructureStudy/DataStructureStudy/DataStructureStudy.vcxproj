@@ -145,6 +145,9 @@
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="LinkedStack.h" />
     <ClInclude Include="ListDataType.h" />
+    <ClInclude Include="RedBlackBST.h" />
+    <ClInclude Include="SelfBalancingBST.h" />
+    <ClInclude Include="SelfBalancingBST_Factory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArrayGraph.cpp" />
