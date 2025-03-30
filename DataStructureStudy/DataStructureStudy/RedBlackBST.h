@@ -50,7 +50,7 @@ protected:
 
 private:
 	void SolveInsertionImbalance(RedBlackTreeNode<T>* pNode);
-	void SolveRemovalImbalance(RedBlackTreeNode<T>* pNode);
+	void SolveRemovalImbalance(RedBlackTreeNode<T>* pDel, RedBlackTreeNode<T>* pReplaceChild);
 
 	RedBlackType GetColor(RedBlackTreeNode<T>* pNode) const;
 	RedBlackType ReverseColor(RedBlackType type) const;
@@ -148,7 +148,7 @@ bool RedBlackBST<T>::Remove(T data)
 		{
 			if (pDelParent->pLeft == pDel) pDelParent->pLeft = nullptr;
 			if (pDelParent->pRight == pDel) pDelParent->pRight = nullptr;
-			SolveRemovalImbalance(pDel);
+			SolveRemovalImbalance(pDel, nullptr);
 		}
 		delete pDel;
 	}
@@ -184,7 +184,7 @@ bool RedBlackBST<T>::Remove(T data)
 			if (pReplaceParent->pRight == pReplace) pReplaceParent->pRight = pReplaceChild;
 		}
 		pDel->data = pReplace->data;
-		SolveRemovalImbalance(pReplace);
+		SolveRemovalImbalance(pReplace, pReplaceChild);
 		delete pReplace;
 	}
 	count--;
@@ -248,7 +248,9 @@ void RedBlackBST<T>::Display() const
 			RedBlackTreeNode<T>* pNode = pNodeQueue->Dequeue();
 			int lv = pLvQueue->Dequeue();
 			for (int i = 0; i < lv; i++) printf("\t");
-			printf("[lv:%d] => type: %d, data: %d\n", lv, pNode->type, pNode->data);
+			printf("[lv:%d] => type: %d, data: %d", lv, pNode->type, pNode->data);
+			if (pNode->pParent != nullptr) printf(", pParent->data: %d", pNode->pParent->data);
+			printf("\n");
 
 			if (pNode->pLeft != nullptr)
 			{
@@ -280,6 +282,7 @@ SelfBalancingTreeNode<T>* RedBlackBST<T>::RotateLL(SelfBalancingTreeNode<T>* pNo
 
 	pLeft->pParent = pParent;
 	pCur->pParent = pLeft;
+	if (pCur->pLeft != nullptr) pCur->pLeft->pParent = pCur;
 
 	if (pParent == nullptr) return pLeft;
 	if (pParent->pLeft == pCur)
@@ -302,6 +305,7 @@ SelfBalancingTreeNode<T>* RedBlackBST<T>::RotateRR(SelfBalancingTreeNode<T>* pNo
 
 	pRight->pParent = pParent;
 	pCur->pParent = pRight;
+	if (pCur->pRight != nullptr) pCur->pRight->pParent = pCur;
 
 	if (pParent == nullptr) return pRight;
 	if (pParent->pLeft == pCur)
@@ -376,8 +380,121 @@ void RedBlackBST<T>::SolveInsertionImbalance(RedBlackTreeNode<T>* pNode)
 }
 
 template<typename T>
-void RedBlackBST<T>::SolveRemovalImbalance(RedBlackTreeNode<T>* pNode)
+void RedBlackBST<T>::SolveRemovalImbalance(RedBlackTreeNode<T>* pDel, RedBlackTreeNode<T>* pReplaceChild)
 {
+	// 간단 케이스 체크를 한다.
+	// 삭제되는 노드가 빨강 노드인지 체크.
+	if (pDel->type == RED) return;
+
+	// 삭제되는 노드가 검은 노드지만 하나 있는 자식이 레드인지 체크
+	if (GetColor(pReplaceChild) == RED)
+	{
+		pReplaceChild->type = BLACK;
+		return;
+	}
+
+	// Doubly Black 문제를 해결한다.
+	// 부모, 형제 노드를 구한뒤 8가지 경우의 수를 따져 Doubly Black 문제를 해결한다.
+	RedBlackTreeNode<T>* pDoublyBlack = (pReplaceChild == nullptr) ? pDel : pReplaceChild;
+	do
+	{
+		if (pRoot == pDoublyBlack) break;
+
+		RedBlackTreeNode<T>* pParent = pDoublyBlack->pParent;
+		RedBlackTreeNode<T>* pCompare = (pDoublyBlack == pDel) ? nullptr : pDoublyBlack;
+		RedBlackTreeNode<T>* pSibling = pSibling = (pParent->pLeft == pCompare) ? pParent->pRight : pParent->pLeft;
+		if (GetColor(pSibling) == RED)
+		{
+			pSibling->type = BLACK;
+			pParent->type = RED;
+
+			RedBlackTreeNode<T>* pNewParent = nullptr;
+			if (pSibling == pParent->pLeft)
+			{
+				// case 1
+				pNewParent = (RedBlackTreeNode<T>*)RotateLL(pParent);
+			}
+			else
+			{
+				// case 1 mirror
+				pNewParent = (RedBlackTreeNode<T>*)RotateRR(pParent);
+			}
+			if (pRoot == pParent) pRoot = pNewParent;
+		}
+		else
+		{
+			RedBlackTreeNode<T>* pLeftChild = pSibling->pLeft;
+			RedBlackTreeNode<T>* pRightChild = pSibling->pRight;
+			if (pParent->pLeft == pSibling)
+			{
+				if (GetColor(pLeftChild) == BLACK && GetColor(pRightChild) == BLACK)
+				{
+					// case 2
+					pSibling->type = RED;
+					if (pParent->type == RED)
+					{
+						pParent->type = BLACK;
+						pDoublyBlack = nullptr;
+					}
+					else
+					{
+						pDoublyBlack = pParent;
+					}
+				}
+				else if (GetColor(pLeftChild) == BLACK && GetColor(pRightChild) == RED)
+				{
+					// case 3
+					pRightChild->type = BLACK;
+					pSibling->type = RED;
+					RotateRR(pSibling);
+				}
+				else if (GetColor(pLeftChild) == RED)
+				{
+					// case 4
+					pSibling->type = pParent->type;
+					pParent->type = BLACK;
+					pLeftChild->type = BLACK;
+					auto pNewParent = (RedBlackTreeNode<T>*)RotateLL(pParent);
+					if (pRoot == pParent) pRoot = pNewParent;
+					pDoublyBlack = nullptr;
+				}
+			}
+			else
+			{
+				if (GetColor(pLeftChild) == BLACK && GetColor(pRightChild) == BLACK)
+				{
+					// case 2 mirror
+					pSibling->type = RED;
+					if (pParent->type == RED)
+					{
+						pParent->type = BLACK;
+						pDoublyBlack = nullptr;
+					}
+					else
+					{
+						pDoublyBlack = pParent;
+					}
+				}
+				else if (GetColor(pLeftChild) == RED && GetColor(pRightChild) == BLACK)
+				{
+					// case 3 mirror
+					pLeftChild->type = BLACK;
+					pSibling->type = RED;
+					RotateLL(pSibling);
+				}
+				else if (GetColor(pRightChild) == RED)
+				{
+					// case 4 mirror
+					pSibling->type = pParent->type;
+					pParent->type = BLACK;
+					pRightChild->type = BLACK;
+					auto pNewParent = (RedBlackTreeNode<T>*)RotateRR(pParent);
+					if (pRoot == pParent) pRoot = pNewParent;
+					pDoublyBlack = nullptr;
+				}
+			}
+		}
+	} while (pDoublyBlack != nullptr);
 }
 
 template<typename T>

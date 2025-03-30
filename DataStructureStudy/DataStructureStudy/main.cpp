@@ -4,33 +4,31 @@
 int main()
 {
 	SelfBalancingBST<int>* pTree = SelfBanlancingBST_Factory<int>::Create(RED_BLACK);
-	pTree->Insert(9);
-	pTree->Insert(3);
-	pTree->Insert(1);
+	pTree->Insert(20);
 	pTree->Insert(10);
-	pTree->Insert(12);
-	pTree->Insert(6);
-	pTree->Insert(4);
+	pTree->Insert(50);
+	pTree->Insert(30);
+	pTree->Insert(80);
+	pTree->Insert(40);
+	pTree->Insert(35);
+	pTree->Insert(25);
 	pTree->Insert(5);
+	pTree->Insert(15);
+	pTree->Insert(33);
+	pTree->Insert(37);
+	pTree->Insert(45);
+	pTree->Insert(2);
+	pTree->Insert(27);
 	pTree->Display();
 
-	auto pNode = pTree->Search(10);
-	if (pNode != nullptr)
-		printf("Searched Data: %d\n", pNode->data);
-	pTree->Search(100);
-
-	/*pTree->Remove(9);
-	pTree->Remove(10);
-	pTree->Remove(5);
+	pTree->Remove(15);
+	pTree->Remove(33);
+	pTree->Remove(37);
+	pTree->Remove(35);
+	pTree->Remove(25);
+	pTree->Remove(27);
+	pTree->Remove(2);
 	pTree->Display();
-
-	pTree->Clear();
-	pTree->Display();
-
-	pTree->Insert(10);
-	pTree->Insert(12);
-	pTree->Insert(6);
-	pTree->Display();*/
 
 	delete pTree;
 	return 0;
